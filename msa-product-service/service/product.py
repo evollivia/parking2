@@ -10,13 +10,11 @@ def register(db: Session, product: ProductBase):
     db.add(product)
     db.commit()
     db.refresh(product)
-    print(product)
-
     return product
 
 def productlist(db: Session):
-    return db.query(Product.name, Product.price,
-              Product.regdate, Product.pno)\
+    return db.query(Product.carnum, Product.barrier,
+              Product.intime, Product.pno)\
               .order_by(Product.pno.desc()).all()
 
 

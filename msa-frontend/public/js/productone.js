@@ -1,6 +1,5 @@
 // 페이지 완전 로드시 자동으로 실행
 document.addEventListener('DOMContentLoaded', async () => {
-    //console.log(location.pathname.split('/').pop());
     let pno = location.pathname.split('/').pop();
 
     try {
@@ -32,16 +31,23 @@ const displayProductOne = (product) => {
 
     let html = '<ul>';
     html += `<li>
-        상품번호 : ${product.pno},
-        상품이름 : ${product.name},
-        상품상세설명 : ${product.desc},
-        상품가격 : ${product.price},
-        상품제조사 : ${product.maker},
-        상품등록일 : ${product.regdate}
+        등록번호 : ${product.pno},
+        차량번호 : ${product.carnum},
+        장애여부 : ${product.barrier},
+        입차시간 : ${formatTime(product.intime)},
+        출차시간 : ${formatTime(product.outtime)},
     </li>`;
     html += '</ul>';
 
     productone.innerHTML = html;
 };
 
+// 시간을 HH:MM:SS 형식으로 포맷팅하는 함수
+const formatTime = (datetime) => {
+    const date = new Date(datetime); // ISO 문자열을 Date 객체로 변환
+    const hours = String(date.getUTCHours()).padStart(2, '0'); // 시
+    const minutes = String(date.getUTCMinutes()).padStart(2, '0'); // 분
+    const seconds = String(date.getUTCSeconds()).padStart(2, '0'); // 초
 
+    return `${hours}:${minutes}:${seconds}`; // HH:MM:SS 형식으로 반환
+};

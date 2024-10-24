@@ -1,12 +1,13 @@
+from datetime import datetime
+
 from pydantic import BaseModel
 
 
 class ProductBase(BaseModel):
-    name: str
-    desc: str
-    price: int
-    maker: str
-    regdate: str
+    carnum: str
+    barrier: str
+    intime: datetime
+    outtime: datetime
 
 
 class Product(ProductBase):
@@ -18,9 +19,9 @@ class Product(ProductBase):
 
 class ProductList(BaseModel):
     pno: int
-    name: str
-    price: int
-    regdate: str
+    carnum: str
+    barrier: str
+    intime: datetime
 
     class Config:
         from_attributes=True

@@ -5,7 +5,7 @@ window.addEventListener('load', async () => {
         displayProducList(products);
     } catch (e) {
         console.log(e);
-        alert('상품 목록 조회 실패!');
+        alert('차량 목록 조회 실패!');
     }
 });
 
@@ -16,14 +16,11 @@ const getProductList = async () => {
         const data = await res.json();
         return data;
     } else {
-        throw new Error('상품 목록 fetch 실패!');
+        throw new Error('차량 목록 fetch 실패!');
     }
 };
 
 const displayProducList = (products) => {
-    // 테스트용 데이터
-    // products = [{'name': '테스트', 'price': 99999,
-    //            'regdate': '2024-10-16'}];
 
     const productlist = document.querySelector('#product-list');
     console.log(products);
@@ -31,9 +28,9 @@ const displayProducList = (products) => {
     let html = '<ul>';
     for (const p of products) {
         html += `<li>
-            상품이름 : <a href="/product/${p.pno}">${p.name}</a>,
-            상품가격 : ${p.price},
-            상품등록일 : ${p.regdate},
+            차량번호 : <a href="/product/${p.pno}">${p.carnum}</a>,
+            장애여부 : ${p.barrier},
+            입차시간 : ${p.intime},
             [<a href="javascript:pmodify('${p.pno}')">수정</a>],
             [<a href="javascript:premove('${p.pno}')">삭제</a>]
         </li>`

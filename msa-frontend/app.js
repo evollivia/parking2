@@ -6,7 +6,6 @@ const session = require('express-session');
 let port = 3000;
 
 let indexRouter = require('./public/index');
-let naverRouter = require('./public/naver');
 
 let app = express();
 
@@ -23,7 +22,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/', naverRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
